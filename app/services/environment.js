@@ -6,6 +6,9 @@ this JS file will provide the requisite config data.
 This is actually a good thing, thus config can't be hijacked for
 API keys and security files.
 */
+import TEST from '../../config/'
+console.log(TEST)
+
 const ENV = process.env.NODE_ENV
 const version = process.env.VERSION || 'v1'
 const API = ENV === 'production'

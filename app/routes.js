@@ -41,14 +41,14 @@ export default (store) => {
 
   return (
     <Route path='/' component={Template} >
-      <IndexRoute getComponent={SplitTest} />
-      <Route path='/dashboard' getComponent={SplitTest} />
+      {/* <IndexRoute getComponent={SplitTest} />
+      <Route path='/dashboard' getComponent={SplitTest} /> */}
       {/* <IndexRoute getComponent={() => <div>FRONTPAGE</div>} />
       <Route path='/dashboard' getComponent={() => <div>DASHBOARD</div>} /> */}
-      {/* <IndexRoute getComponent={SplitFrontPage} />
+      <IndexRoute getComponent={SplitFrontPage} />
       <Route path='/dashboard' getComponent={SplitDashboard} />
       <Route path='/model/:id' getComponent={SplitModel} />
-      <Route path='*' getComponent={SplitNotFound} /> */}
+      <Route path='*' getComponent={SplitNotFound} />
       {/* <Route path='/edit/:id' onEnter={requireAuth} getComponent={SplitEdit} /> */}
     </Route>
   )

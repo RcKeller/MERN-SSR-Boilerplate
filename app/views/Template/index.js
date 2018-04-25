@@ -1,10 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-
-import { Link } from 'react-router'
-
 import Helmet from 'react-helmet'
 import favicon from '../../images/favicon.ico'
 const meta = [
@@ -36,38 +32,24 @@ const meta = [
 const link = [{ rel: 'icon', href: favicon }]
 
 import NavigationDrawer from 'react-md/lib/NavigationDrawers'
-import FontIcon from 'react-md/lib/FontIcons'
 
-import { environment, authentication } from '../../services'
-const { ENV } = environment
-const { endSession } = authentication
-
-import { Button } from 'react-md'
+import Nav from './Nav'
+import Login from './Login'
 
 @connect(
   state => ({
-    screen: state.screen,
-    user: state.user
+    screen: state.screen
   })
 )
 class Template extends React.Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
     router: PropTypes.object,
-    screen: PropTypes.object,
-    user: PropTypes.object,
-    // signOut: PropTypes.func
+    screen: PropTypes.object
   }
   render (
-    { children, router, screen, user } = this.props
+    { children, router, screen } = this.props
   ) {
-    // React-router is separated from redux store - too heavy to persist.
-    const navItems = [{
-      primaryText: 'Dashboard',
-      leftIcon: <FontIcon>home</FontIcon>,
-      component: Link,
-      to: '/dashboard'
-    }]
     return (
       <div>
         <Helmet
@@ -78,23 +60,10 @@ class Template extends React.Component {
           drawerTitle='Navigation'
           toolbarTitle={'Conference Check'}
           contentClassName='main-content'
-          navItems={navItems}
+          navItems={Nav}
           mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
           tabletDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
           desktopDrawerType={NavigationDrawer.DrawerTypes.CLIPPED}
-          toolbarActions={!user.authenticated
-            ? <Button flat secondary iconChildren='input'
-              href={ENV === 'production' ? '/auth/google' : '/auth/google'}
-            >
-              Log In
-            </Button>
-            : <Button flat secondary iconChildren='verified_user'
-              // onClick={signOut}
-            >
-              {user.username}
-            </Button>
-          }
-          // toolbarActions={<ToolbarActions config={config} />}
         >
           <div className='main-container'>
             {children}
