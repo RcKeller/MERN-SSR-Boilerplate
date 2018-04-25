@@ -5,13 +5,13 @@ import Helmet from 'react-helmet'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
-import api from '../../services'
+import API from '../../services'
 
 import { Card, CardTitle, CardText } from 'react-md'
 
 @compose(
   connect(state => ({ model: state.db.model })),
-  connectRequest((props) => api.get('model', { id: props.params.id }))
+  connectRequest((props) => API.get('model', { id: props.params.id }))
 )
 class Model extends React.Component {
   static propTypes = {

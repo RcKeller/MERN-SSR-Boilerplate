@@ -64,6 +64,7 @@ class Template extends React.Component {
           mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
           tabletDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
           desktopDrawerType={NavigationDrawer.DrawerTypes.CLIPPED}
+          toolbarActions={[<Login />]}
         >
           <div className='main-container'>
             {children}

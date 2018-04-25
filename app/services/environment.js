@@ -6,19 +6,18 @@ this JS file will provide the requisite config data.
 This is actually a good thing, thus config can't be hijacked for
 API keys and security files.
 */
-import TEST from '../../config/'
-console.log(TEST)
+// NOTE: Destructuring for security purposes
+import { env, version, protocol, domain, auth } from '../../config/'
+export { env, version, protocol, domain, auth }
 
-const ENV = process.env.NODE_ENV
-const version = process.env.VERSION || 'v1'
-const API = ENV === 'production'
-  ? 'https://iothack.me'
-  : 'http://localhost:3000'
-const identityProvider = ENV === 'production'
-  ? '/auth/google'
+export const identityProvider = Object.keys(auth)[0]
+
+export const loginURL = auth && auth[identityProvider]
+  ? auth[identityProvider].loginURL
   : '/auth/google'
-const identityType = ENV === 'production'
-  ? 'T-Mobile ID'
+
+export const identityType = env === 'production'
+  ? 'User ID'
   : 'Mock ID'
-export { ENV, version, API, identityProvider, identityType }
-export default { ENV, version, API, identityProvider, identityType }
+
+export const uri = `${protocol}://${domain}/api/${version}`

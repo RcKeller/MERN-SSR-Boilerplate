@@ -1,8 +1,7 @@
-import { API, version } from './environment'
-//  API Mutators are wrapped with async middleware
+import { uri } from './environment'
+//  uri Mutators are wrapped with async middleware
 import { requestAsync, mutateAsync } from 'redux-query'
-import { plural, singular } from 'pluralize'
-const endpoint = `${API}/${version}`
+import { singular } from 'pluralize'
 /*
 https://amplitude.github.io/redux-query/#/
 FOREWARD:
@@ -37,7 +36,7 @@ const target = (model, options = {}) => {
       ? `${prev}${!prev ? '?' : '&'}${key}=${JSON.stringify(options[key])}`
       : prev
   }, '')
-  return `${endpoint}/${singular(model)}/${options.id || ''}${queryString}`
+  return `${uri}/${singular(model)}/${options.id || ''}${queryString}`
 }
 
 //  Normalize responses. If you get an array with a single object, select that object.
@@ -117,7 +116,7 @@ const remove = (model, options = {}) => mutateAsync({
 })
 
 export default {
-  endpoint,
+  uri,
   get,
   getAsync,
   post,

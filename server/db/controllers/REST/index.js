@@ -9,7 +9,7 @@ export default class Restify {
     this.model = model
     //  express-restify-mongoose configurations - common to all controllers
     this.config = {
-      prefix: '',
+      prefix: '/api',
       version: '/v1',
       name: this.model.modelName.toLowerCase(),
       //  Disabling these allows middleware to be called

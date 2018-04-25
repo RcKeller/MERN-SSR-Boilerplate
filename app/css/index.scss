@@ -7,8 +7,8 @@
 
 
 $md-light-theme: true; // optional for light theme
-$md-primary-color: #ff009f;
-$md-secondary-color: #d3d3d3;
+$md-primary-color: $md-deep-purple-500;
+$md-secondary-color: $md-deep-orange-a-200;
 //  Disable material design color compliance warnings
 $md-colors-warn-md: false;
 

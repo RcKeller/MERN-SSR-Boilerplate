@@ -1,4 +1,4 @@
-import api from './api'
+import API from './api'
 /* *****
 ACTIONS
 ***** */
@@ -10,7 +10,7 @@ export const updateConfig = (update, options) => {
   return function (dispatch) {
     //  Redux query updates must be nullified
     options.update = () => null
-    dispatch(api.patch('settings', update, options))
+    dispatch(API.patch('settings', update, options))
     .then(({ body }) => {
       dispatch(updateConfigAction(body))
       console.warn('TOAST: Site settings updated!')

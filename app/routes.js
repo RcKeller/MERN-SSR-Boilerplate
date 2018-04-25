@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-import { environment } from './services'
-const { ENV } = environment
+// import { env } from './services'
 
 import Template from './views/Template/'
 /*
@@ -16,15 +15,13 @@ const SplitDashboard = (l, c) => require.ensure([], () => c(null, require('./vie
 const SplitModel = (l, c) => require.ensure([], () => c(null, require('./views/Model/index').default))
 const SplitNotFound = (l, c) => require.ensure([], () => c(null, require('./views/NotFound/index').default))
 
-const SplitTest = (l, c) => require.ensure([], () => c(null, require('./views/Test/index').default))
-
 /*
  * @param {Redux Store}
  * We require store as an argument here because we wish to get
  * state from the store after it has been authenticated.
  */
 export default (store) => {
-  // const loginRoute = ENV === 'production' ? '/auth/google' : '/auth/google'
+  // const loginRoute = env === 'production' ? '/auth/google' : '/auth/google'
   // const requireAuth = (nextState, replace, callback) => {
   //   const { user } = store.getState()
   //   const authenticated = user.authenticated || false
@@ -41,10 +38,6 @@ export default (store) => {
 
   return (
     <Route path='/' component={Template} >
-      {/* <IndexRoute getComponent={SplitTest} />
-      <Route path='/dashboard' getComponent={SplitTest} /> */}
-      {/* <IndexRoute getComponent={() => <div>FRONTPAGE</div>} />
-      <Route path='/dashboard' getComponent={() => <div>DASHBOARD</div>} /> */}
       <IndexRoute getComponent={SplitFrontPage} />
       <Route path='/dashboard' getComponent={SplitDashboard} />
       <Route path='/model/:id' getComponent={SplitModel} />

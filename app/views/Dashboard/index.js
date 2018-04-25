@@ -5,7 +5,7 @@ import Helmet from 'react-helmet'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
-import api from '../../services'
+import API from '../../services'
 
 import { Card, CardTitle, CardText } from 'react-md'
 
@@ -14,7 +14,7 @@ import { Card, CardTitle, CardText } from 'react-md'
     models: state.db.models,
     screen: state.screen
   })),
-  connectRequest(() => api.get('models'))
+  connectRequest(() => API.get('models'))
 )
 class Dashboard extends React.Component {
   static propTypes = {

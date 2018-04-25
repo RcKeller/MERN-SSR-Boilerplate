@@ -1,4 +1,4 @@
-import { API } from './environment'
+import { uri } from './environment'
 import { mutateAsync } from 'redux-query'
 
 /*
@@ -18,7 +18,7 @@ export const endSession = () => {
   return function (dispatch) {
     //  TODO: Use fetch for this.
     dispatch(mutateAsync({
-      url: `${API}/sessions`,
+      url: `${uri}/sessions`,
       options: { method: 'DELETE' },
       update: {} // Handled in reducer
     }))

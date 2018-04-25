@@ -2,6 +2,8 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 
+import api from '../../services'
+
 @connect(state => ({
   user: state.user,
   db: state.db,
@@ -9,6 +11,7 @@ import { connect } from 'react-redux'
 }))
 class FrontPage extends React.Component {
   render ({ user, db, settings } = this.props) {
+    console.log(api)
     return (
       <article>
         <Helmet title='Home' />
