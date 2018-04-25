@@ -1,12 +1,14 @@
 node_modules
-nodemon.json
 npm-debug.log
+*.lock
 .tmp
 .idea
 public
 compiled
 *.swp
 .vscode
-config/*
 security
-logs
+logs/*.txt
+config/*.js
+config/*.ppk
+config/*.pem

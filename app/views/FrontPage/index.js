@@ -2,7 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 
-import api from '../../services'
+import Boundary from '../../components'
 
 @connect(state => ({
   user: state.user,
@@ -11,24 +11,27 @@ import api from '../../services'
 }))
 class FrontPage extends React.Component {
   render ({ user, db, settings } = this.props) {
-    console.log(api)
     return (
       <article>
         <Helmet title='Home' />
-        <h1>MERN SSR Boilerplate</h1>
-        <h6>Developer: Ryan Keller</h6>
-        <section>
-          <h3>User Data:</h3>
-          <code>{JSON.stringify(user)}</code>
-        </section>
-        <section>
-          <h3>Database Client-Side Cache:</h3>
-          <code>{JSON.stringify(db)}</code>
-        </section>
-        <section>
-          <h3>Server-Loaded Config:</h3>
-          <code>{JSON.stringify(settings)}</code>
-        </section>
+        <Boundary title='Dashboard'>
+          <section>
+            <h1>MERN SSR Boilerplate</h1>
+            <h6>Developer: Ryan Keller</h6>
+            <div>
+              <h3>User Data:</h3>
+              <code>{JSON.stringify(user)}</code>
+            </div>
+            <div>
+              <h3>Database Client-Side Cache:</h3>
+              <code>{JSON.stringify(db)}</code>
+            </div>
+            <div>
+              <h3>Server-Loaded Config:</h3>
+              <code>{JSON.stringify(settings)}</code>
+            </div>
+          </section>
+        </Boundary>
       </article>
     )
   }

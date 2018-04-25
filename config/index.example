@@ -1,0 +1,58 @@
+/*
+IN ADDITION TO THIS, THE FOLLOWING FILES ARE REQUIRED FOR DEPLOYMENT:
+  priv-key.ppk
+  pub-cert.ppk
+*/
+const universal = {
+  env: process.env.NODE_ENV,
+  version: 'v1',
+  sessionName: 'sid',
+  sessionSecret: '4QM9bUORPjg0IjqYdFCrpFcgepzF4WQKo0BthuLc',
+  cookieSecret: 'Rax8W8EtmqgNUwtFfntN9BVJjcyWSvg8YtOLIlJq'
+}
+
+const development = {
+  protocol: 'http',
+  domain: 'localhost:3000',
+  port: 3000,
+  db: 'mongodb://192.168.99.100:27017/local-dev',
+  auth: {
+    google: {
+      clientID: '62351010161-eqcnoa340ki5ekb9gvids4ksgqt9hf48.apps.googleusercontent.com',
+      clientSecret: '6cKCWD75gHgzCvM4VQyR5_TU',
+      loginURL: '/auth/google',
+      callbackURL: '/auth/google/callback',
+      successRedirect: '/',
+      failureRedirect: '/'
+    },
+  },
+  seeds: 5,
+}
+
+const production = {
+  protocol: 'https',
+  domain: 'example.org',
+  port: 443,
+  redirect: 80,
+  db: 'mongodb://192.168.99.100:27017/local-dev',
+  auth: {
+    google: {
+      clientID: '62351010161-eqcnoa340ki5ekb9gvids4ksgqt9hf48.apps.googleusercontent.com',
+      clientSecret: '6cKCWD75gHgzCvM4VQyR5_TU',
+      loginURL: '/auth/google',
+      callbackURL: '/auth/google/callback',
+      successRedirect: '/',
+      failureRedirect: '/'
+    },
+  },
+  analytics: {
+    google: ''
+  }
+}
+
+
+// Babel won't process ES6 exports
+const config = Object.assign({}, universal,
+  process.env.NODE_ENV === 'production' ? production : development
+)
+module.exports = config

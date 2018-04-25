@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
 import API from '../../services'
 
+import Loading from '../../components'
 import { Card, CardTitle, CardText } from 'react-md'
 
 @compose(
@@ -16,24 +17,29 @@ import { Card, CardTitle, CardText } from 'react-md'
 class Model extends React.Component {
   static propTypes = {
     params: PropTypes.shape({
-      id: PropTypes.string.isRequired
+      id: PropTypes.string
     })
   }
   static defaultProps = {
     model: {}
   }
-  render ({ model } = this.props) {
+  render ({ model, params } = this.props) {
     return (
       <article>
         <Helmet title={`Model ${model._id || 'Loading...'}`} />
-        <Card className='md-block-centered'>
-          <CardTitle title={`Room: ${model.name}`} subtitle={`In ${model.name}`} />
-          <CardText>
-            <pre>
-              <code>{JSON.stringify(model)}</code>
-            </pre>
-          </CardText>
-        </Card>
+        <Loading render={model._id}
+          title={`model ${params.id}`}
+          tip={`Loading model ${params.id}...`}
+        >
+          <Card className='md-block-centered'>
+            <CardTitle title={`Room: ${model.name}`} subtitle={`In ${model.name}`} />
+            <CardText>
+              <pre>
+                <code>{JSON.stringify(model)}</code>
+              </pre>
+            </CardText>
+          </Card>
+        </Loading>
       </article>
     )
   }

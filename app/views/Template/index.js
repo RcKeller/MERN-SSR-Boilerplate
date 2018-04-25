@@ -53,13 +53,13 @@ class Template extends React.Component {
     return (
       <div>
         <Helmet
-          titleTemplate='%s - T-Mobile CC'
+          titleTemplate='%s - MERN Boilerplate'
           meta={meta} link={link}
         />
         <NavigationDrawer
-          drawerTitle='Navigation'
-          toolbarTitle={'Conference Check'}
           contentClassName='main-content'
+          toolbarTitle='Application Boilerplate'
+          drawerTitle='Navigation'
           navItems={Nav}
           mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
           tabletDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
