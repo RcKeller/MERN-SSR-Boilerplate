@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import { loadModels } from './models'
 import dummyData from './dummy'
 import config from '../../config/'
-const { db, seeds } = config
+const { db, seeds } = config[process.env.NODE_ENV]
 
 export default () => {
   // Find the appropriate database to connect to, default to localhost if not found.

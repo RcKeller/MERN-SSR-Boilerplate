@@ -1,7 +1,8 @@
 import session from 'express-session'
 import connectMongo from 'connect-mongo'
 
-import { db } from '../../config/'
+import config from '../../config/'
+const { db } = config[process.env.NODE_ENV]
 
 const MongoStore = connectMongo(session)
-export default () => new MongoStore({ db, autoReconnect: true })
+export default () => new MongoStore({ url: db, autoReconnect: true })

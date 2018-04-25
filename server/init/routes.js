@@ -1,4 +1,5 @@
-import { controllers } from '../db'
+import db from '../db'
+const { controllers } = db
 
 //  GENERATE ROUTES
 export default (app) => {
@@ -6,5 +7,5 @@ export default (app) => {
   controllers.REST.map(Model => {
     app.use(new Model().API())
   })
-  console.log(`REST: API live for all ${Object.keys(controllers.REST).length - 1} compatible models.`)
+  console.log(`REST: API live for all ${Object.keys(controllers.REST).length} compatible models.`)
 }
