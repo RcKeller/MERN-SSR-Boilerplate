@@ -11,10 +11,12 @@ files that are loaded async. Router does not officially support this.
 Please note, migration to v4 is a BREAKING change.
 https://github.com/reactGo/reactGo/pull/841/files
 */
-// const SplitFrontPage = (l, c) => require.ensure([], () => c(null, require('./views/FrontPage/index').default))
-// const SplitDashboard = (l, c) => require.ensure([], () => c(null, require('./views/Dashboard/index').default))
-// const SplitModel = (l, c) => require.ensure([], () => c(null, require('./views/Model/index').default))
-// const SplitNotFound = (l, c) => require.ensure([], () => c(null, require('./views/NotFound/index').default))
+const SplitFrontPage = (l, c) => require.ensure([], () => c(null, require('./views/FrontPage/index').default))
+const SplitDashboard = (l, c) => require.ensure([], () => c(null, require('./views/Dashboard/index').default))
+const SplitModel = (l, c) => require.ensure([], () => c(null, require('./views/Model/index').default))
+const SplitNotFound = (l, c) => require.ensure([], () => c(null, require('./views/NotFound/index').default))
+
+const SplitTest = (l, c) => require.ensure([], () => c(null, require('./views/Test/index').default))
 
 /*
  * @param {Redux Store}
@@ -39,8 +41,10 @@ export default (store) => {
 
   return (
     <Route path='/' component={Template} >
-      <IndexRoute getComponent={() => <div>FRONTPAGE</div>} />
-      <Route path='/dashboard' getComponent={() => <div>DASHBOARD</div>} />
+      <IndexRoute getComponent={SplitTest} />
+      <Route path='/dashboard' getComponent={SplitTest} />
+      {/* <IndexRoute getComponent={() => <div>FRONTPAGE</div>} />
+      <Route path='/dashboard' getComponent={() => <div>DASHBOARD</div>} /> */}
       {/* <IndexRoute getComponent={SplitFrontPage} />
       <Route path='/dashboard' getComponent={SplitDashboard} />
       <Route path='/model/:id' getComponent={SplitModel} />
