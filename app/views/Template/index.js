@@ -48,8 +48,7 @@ import { Button } from 'react-md'
   state => ({
     screen: state.screen,
     user: state.user
-  }),
-  dispatch => ({ signOut: bindActionCreators(endSession, dispatch) })
+  })
 )
 class Template extends React.Component {
   static propTypes = {
@@ -57,10 +56,10 @@ class Template extends React.Component {
     router: PropTypes.object,
     screen: PropTypes.object,
     user: PropTypes.object,
-    signOut: PropTypes.func
+    // signOut: PropTypes.func
   }
   render (
-    { children, router, screen, user, signOut } = this.props
+    { children, router, screen, user } = this.props
   ) {
     // React-router is separated from redux store - too heavy to persist.
     const navItems = [{
@@ -90,7 +89,7 @@ class Template extends React.Component {
               Log In
             </Button>
             : <Button flat secondary iconChildren='verified_user'
-              onClick={signOut}
+              // onClick={signOut}
             >
               {user.username}
             </Button>
