@@ -1,19 +1,7 @@
 import { OAuth2Strategy as GoogleStrategy } from 'passport-google-oauth'
 import db from '../../db'
-import config from 'config'
 
-/*
-CONFIG FILE: /config/default.json or /config/development.json
-"google": {
-  "clientID": "<...google id>.apps.googleusercontent.com",
-  "clientSecret": "<...google secret>",
-  "loginURL": "/auth/google",
-  "callbackURL": "/auth/google/callback",
-  "successRedirect": "/",
-  "failureRedirect": "/"
-}
-*/
-export default (app, passport) => {
+export default (app, passport, config) => {
   if (!db.passport || !db.passport.google || !typeof db.passport.google === 'function') {
     console.warn('Error: MongoDB unable to initialize passport-google-oauth')
     return
@@ -39,7 +27,7 @@ export default (app, passport) => {
   credentials and calls done providing a user, as well
   as options specifying a client ID, client secret, and callback URL.
   */
-  const { clientID, clientSecret, loginURL, callbackURL, successRedirect, failureRedirect } = config.get('google')
+  const { clientID, clientSecret, loginURL, callbackURL, successRedirect, failureRedirect } = config.auth.google
   //  NOTE: Namespaces are "URL", case sensitive
   passport.use(new GoogleStrategy({
     clientID,

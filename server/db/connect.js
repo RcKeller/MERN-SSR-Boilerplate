@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
 import { loadModels } from './models'
 import dummyData from './dummy'
-import config from 'config'
-const db = config.get('db')
+import config from '../../config/'
+const { db, seeds } = config
 
 export default () => {
   // Find the appropriate database to connect to, default to localhost if not found.
@@ -22,5 +22,5 @@ export default () => {
   mongoose.connection.on('disconnected', connect)
 
   loadModels()
-  if (config.has('lorem-ipsum')) { dummyData() }
+  if (seeds) { dummyData(config) }
 }

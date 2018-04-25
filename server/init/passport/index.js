@@ -1,7 +1,7 @@
 import passport from 'passport'
 import google from './google'
 
-export default (app) => {
+export default (app, config) => {
   /*
   Configure Passport authenticated session persistence.
 
@@ -15,7 +15,7 @@ export default (app) => {
   app.use(passport.initialize())
   app.use(passport.session())
   // Load strategies based on the env
-  google(app, passport)
+  if (config.auth.google) google(app, passport, config)
   //  Delete sessions
   app.delete('/sessions', (req, res) => {
     req.logout()

@@ -1,10 +1,7 @@
-import { controller } from '../db'
+import { controllers } from '../db'
 
 //  GENERATE ROUTES
 export default (app) => {
-  /*
-  RESTful APIs
-  */
   console.log('REST: Initializing rest API routes')
   controllers.REST.map(Model => {
     app.use(new Model().API())

@@ -8,13 +8,11 @@ import flash from 'express-flash'
 import methodOverride from 'method-override'
 import gzip from 'compression'
 import helmet from 'helmet'
-import config from 'config'
 import db from '../db'
-const env = config.get('env')
-const port = config.get('port')
-const version = config.get('version')
 
-export default (app) => {
+export default (app, config) => {
+  // TODO: Use sessionName, cookieSecret
+  const { env, version, port, sessionSecret } = config
   app.set('port', port)
 
   // Secure your Express apps by setting various HTTP headers. Documentation: https://github.com/helmetjs/helmet
@@ -71,11 +69,9 @@ export default (app) => {
     ? sessionStore = db.session()
     : console.warn('Error: MongoDB failed to handle session storage')
 
-  // const name = config.get('sessionName')
-  const secret = config.get('sessionSecret')
   let sess = {
     // name,
-    secret,
+    secret: sessionSecret,
     store: sessionStore,
     // resave and saveUninitialized: Per legacy UW-STF site, defaults are false
     resave: true,
@@ -86,7 +82,7 @@ export default (app) => {
     }
   }
   app.use(session(sess))
-  console.log(`SESS: Express sessions / cookies enabled (${config.get('sessionSecret')})`)
+  console.log(`SESS: Express sessions / cookies enabled (${sessionSecret})`)
   if (env === 'production') sess.cookie.secure = true
 
   console.log('--------------------------')

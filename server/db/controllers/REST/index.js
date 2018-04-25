@@ -1,7 +1,6 @@
 import restify from 'express-restify-mongoose'
-import _ from 'lodash'
-
 import { Router } from 'express'
+import _ from 'lodash'
 import { Log } from '../../../integrations'
 
 export default class Restify {
@@ -28,7 +27,7 @@ export default class Restify {
         if (method !== 'GET' && erm) {
           try {
             //  FIXME: SSR can't grab client cookies, so we jack session info on the server side
-            const user = _.get(req, 'session.passport.user.netID', 'Anonymous')
+            const user = _.get(req, 'session.passport.user.username', 'Anonymous')
             const { statusCode, result } = erm
             Log.verbose(`${user} - ${method} - ${path} - ${statusCode} \n ${JSON.stringify(result)}`)
           } catch (err) {

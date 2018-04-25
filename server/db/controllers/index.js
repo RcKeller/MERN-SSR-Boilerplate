@@ -2,6 +2,6 @@ import Configs from './REST/configs'
 import Users from './REST/users'
 import Models from './REST/models'
 
-export default controllers = {
+export default {
   REST: [ Configs, Users, Models ]
 }
