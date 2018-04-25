@@ -5,8 +5,9 @@ import Helmet from 'react-helmet'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
-import API from '../../services'
-import Boundary from '../../components'
+
+import { Boundary } from '../../components'
+import { API } from '../../services'
 
 import { Card, CardTitle, CardText } from 'react-md'
 
