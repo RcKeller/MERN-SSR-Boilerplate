@@ -1,6 +1,5 @@
 import winston from 'winston'
 import path from 'path'
-import config from 'config'
 //  http://thisdavej.com/using-winston-a-versatile-logging-library-for-node-js/
 //  http://tostring.it/2014/06/23/advanced-logging-with-nodejs/
 
@@ -8,7 +7,7 @@ class Logger {
   constructor () {
     console.log('LOGS: Initializing Action Logging')
     this.logDir = path.resolve(process.cwd(), 'logs')
-    this.filename = config.has('prod') ? `${this.logDir}/-TMO-WEB.log` : `${this.logDir}/-TMO-DEV.log`
+    this.filename = `${this.logDir}/-MERN-${process.env.NODE_ENV}.log`
     //  { error: 0, warn: 1, info: 2, verbose: 3, debug: 4, silly: 5 }
     this.logger = new winston.Logger({
       transports: [

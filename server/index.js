@@ -6,8 +6,7 @@ import initExpress from './init/express'
 import initRoutes from './init/routes'
 import renderMiddleware from './render/middleware'
 
-const config = require('../config/')[process.env.NODE_ENV]
-
+const config = require('../config/')
 const { env, protocol, domain, port, redirect } = config
 
 console.log('APP: Initializing...')

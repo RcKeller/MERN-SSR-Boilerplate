@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 @connect(state => ({
   user: state.user,
   db: state.db,
-  config: state.config
+  settings: state.settings
 }))
 class FrontPage extends React.Component {
-  render ({ user, db, config } = this.props) {
+  render ({ user, db, settings } = this.props) {
     return (
       <article>
         <Helmet title='Home' />
@@ -24,7 +24,7 @@ class FrontPage extends React.Component {
         </section>
         <section>
           <h3>Server-Loaded Config:</h3>
-          <code>{JSON.stringify(config)}</code>
+          <code>{JSON.stringify(settings)}</code>
         </section>
       </article>
     )

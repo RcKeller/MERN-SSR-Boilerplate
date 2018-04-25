@@ -4,6 +4,7 @@ import { entitiesReducer as db, queriesReducer as queries } from 'redux-query'
 import { responsiveStateReducer as screen } from 'redux-responsive'
 
 import user from './services/authentication'
+import settings from './services/settings'
 
 const rootReducer = combineReducers({
   //  redux-responsive (media query data in store)
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   db, //  AKA Entities
   queries,
   // Isomorphic reducers (authN/Z)
-  user
+  user,
+  settings
   // Client-side reducers
 })
 

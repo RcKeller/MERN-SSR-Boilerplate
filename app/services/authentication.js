@@ -27,7 +27,7 @@ export const endSession = () => {
       console.warn('Thanks for stopping by!')
     })
     .catch(err => {
-      console.warn('Unable to connect to Shibboleth')
+      console.warn('Unable to connect to Authentication provider')
       console.log(err)
     })
   }
